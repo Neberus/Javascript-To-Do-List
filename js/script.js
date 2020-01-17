@@ -48,7 +48,9 @@ function mostrarNaTela(listaTarefas){
 
 function gerarTarefa(valorDigitado){
     let tarefa = document.createElement('div');
+
     tarefa.setAttribute('class','tarefa');
+    // tarefa.setAttribute('posicao', posicao);
 
     let titulo = document.createElement('div');
     titulo.setAttribute('class', 'col-md-8');
@@ -65,4 +67,14 @@ function gerarTarefa(valorDigitado){
     tarefa.appendChild(buttonCheck);
 
     board.appendChild(tarefa);
+
+    buttonCheck.addEventListener('click', function(e) {
+    board.removeChild(tarefa);
+
+    
+    var pos = listaTarefas.indexOf(valorDigitado);
+    listaTarefas.splice(pos,1);
+    localStorage.setItem("listaTarefas", JSON.stringify(listaTarefas));
+});
 }
+
